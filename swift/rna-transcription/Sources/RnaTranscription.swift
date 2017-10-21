@@ -11,20 +11,18 @@ class Nucleotide {
         input = value
     }
 
-    private let compliments: [Character: Character] = [
-        "C": "G",
-        "G": "C",
-        "T": "A",
-        "A": "U"
-    ]
+    func transcribe(_ from: Character) throws -> Character {
+        switch from {
+        case "C": return "G"
+        case "G": return "C"
+        case "T": return "A"
+        case "A": return "U"
+        default: throw Err.invalid
+        }
+    }
 
     func complementOfDNA() throws -> String {
-        let output = try input.map { (char) -> Character in
-            guard let compliment = compliments[char] else {
-                throw Err.invalid
-             }
-            return compliment
-        }
-        return String(output)
+        let chars = try input.map { try transcribe($0) }
+        return String(chars)
     }
 }
