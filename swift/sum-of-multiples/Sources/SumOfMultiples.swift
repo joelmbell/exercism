@@ -7,22 +7,13 @@ extension Sequence where Element: Numeric {
 }
 
 fileprivate func multiples(to limit: Int, for base: Int) -> [Int] {
-    guard base < limit, base != 0 else {
-        return [0]
-    }
-    var temp = base
-    var output: [Int] = []
-    while temp < limit {
-        output.append(temp)
-        temp += base
-    }
-    return output
+    guard base != 0, base < limit else { return [] }
+    return (base..<limit).filter { $0 % base == 0 }
 }
 
 fileprivate func uniqueMultiples(to limit: Int, for bases: [Int]) -> Set<Int> {
-    let values = bases.map { multiples(to: limit, for: $0) }
-    let flattened = values.flatMap { $0 }
-    return Set(flattened)
+    let allValues = bases.flatMap { multiples(to: limit, for: $0) }
+    return Set(allValues) // Remove Duplicates
 }
 
 class SumOfMultiples {
