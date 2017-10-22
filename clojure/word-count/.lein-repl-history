@@ -1,0 +1,43 @@
+(require '[clojure.string :as string])
+(string/split "Clojure is awesome!" #" ")
+(string/split "Clojure is awesome!" #"\s")
+(string/split "Clojure is awesome!" #" ")
+(Character/isLetter \!)
+(filter (fn [x] (Character/isLetter x)) "Hello!!!"
+)
+(apply str (filter (fn [x] (Character/isLetter x)) "Hello!!!"))
+(defn is-punctuation? [char]
+(and (Character/isLetter char))
+exit
+(defn is-punctuation? [char]
+  (and
+    (Character/isLetter char)
+    (not (= " " char))))
+(is-punctuation? " ")
+exit
+use 'clojure.string
+(defn is-punctuation? [char]
+  (and
+    (Character/isLetter char)
+    (not (= " " char))))
+(is-punctuation? "!")
+(is-punctuation? \!)
+(is-punctuation? \A)
+(defn is-punctuation? [char]
+  (and
+    (not (Character/isLetter char))
+    (not (= " " char))))
+(is-punctuation? \A)
+(is-punctuation? \!)
+(is-punctuation? \" ")
+(is-punctuation? \" "")
+"
+)
+(defn is-punctuation? [char]
+  (and
+    (not (Character/isLetter char))
+    (not (Character/isWhitespace char))))
+(is-punctuation? \A)
+(is-punctuation? \!)
+(is-punctuation? \ )
+exit
