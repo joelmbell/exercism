@@ -1,9 +1,13 @@
+// Package gigasecond contains a utility function to add a gigasecond to a given time.
 package gigasecond
 
-import "time"
+import (
+	"time"
+)
 
-const gigasecond = 1000000000
+const gigasecond = time.Second * 1e9
 
+// AddGigasecond Adds 1,000,000,000 to the input.
 func AddGigasecond(t time.Time) time.Time {
-	return t.Add(time.Second * gigasecond)
+	return t.Add(gigasecond)
 }
