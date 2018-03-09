@@ -1,44 +1,38 @@
 // Package bob contains a function that responds with the natural language of a teenager.
 package bob
 
-import (
-	"strings"
-	"unicode/utf8"
-)
-
-func IsShouting(remark string) bool {
-	if !strings.ContainsAny(remark, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
-		return false
-	}
-	uppercased := strings.ToUpper(remark)
-	return remark == uppercased
-}
-
-func IsQuestion(remark string) bool {
-	trimmed := strings.TrimSpace(remark)
-	return strings.HasSuffix(trimmed, "?")
-}
-
-func IsEmpty(remark string) bool {
-	trimmed := strings.Replace(remark, " ", "", -1)
-	trimmed = strings.Replace(trimmed, "\t", "", -1)
-	trimmed = strings.Replace(trimmed, "\n", "", -1)
-	trimmed = strings.Replace(trimmed, "\r", "", -1)
-	return utf8.RuneCountInString(trimmed) <= 0
-}
+import "strings"
 
 // Hey takes a remark and returns a response from a teenager.
 func Hey(remark string) string {
+
+	remark = strings.TrimSpace(remark)
+
 	switch {
-	case IsShouting(remark) && IsQuestion(remark):
+	case isShouting(remark) && isQuestion(remark):
 		return "Calm down, I know what I'm doing!"
-	case IsShouting(remark):
+	case isShouting(remark):
 		return "Whoa, chill out!"
-	case IsQuestion(remark):
+	case isQuestion(remark):
 		return "Sure."
-	case IsEmpty(remark):
+	case isEmpty(remark):
 		return "Fine. Be that way!"
 	default:
 		return "Whatever."
 	}
+}
+
+func isShouting(remark string) bool {
+	if !strings.ContainsAny(remark, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
+		return false
+	}
+	return remark == strings.ToUpper(remark)
+}
+
+func isQuestion(remark string) bool {
+	return strings.HasSuffix(remark, "?")
+}
+
+func isEmpty(remark string) bool {
+	return len(remark) <= 0
 }
