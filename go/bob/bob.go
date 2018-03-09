@@ -7,12 +7,11 @@ import (
 )
 
 func IsShouting(remark string) bool {
-	if strings.ContainsAny(remark, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
-		uppercased := strings.ToUpper(remark)
-		return remark == uppercased
-	} else {
+	if !strings.ContainsAny(remark, "ABCDEFGHIJKLMNOPQRSTUVWXYZ") {
 		return false
 	}
+	uppercased := strings.ToUpper(remark)
+	return remark == uppercased
 }
 
 func IsQuestion(remark string) bool {
