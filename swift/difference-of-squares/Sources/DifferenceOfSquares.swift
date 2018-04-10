@@ -2,13 +2,19 @@
 
 import Foundation
 
+extension Numeric {
+    func square() -> Self {
+        return self * self
+    }
+}
+
 extension Sequence where Element: Numeric {
     func sum() -> Element {
         return reduce(0, +)
     }
 
-    func square() -> [Element] {
-        return map { $0 * $0 }
+    func squareEach() -> [Element] {
+        return map { $0.square() }
     }
 }
 
@@ -21,14 +27,11 @@ class Squares {
     }
 
     var squareOfSums: UInt {
-        let sum = inputRange.sum()
-        return sum * sum
+        return inputRange.sum().square()
     }
 
     var sumOfSquares: UInt {
-        return inputRange
-            .square()
-            .sum()
+        return inputRange.squareEach().sum()
     }
 
     var differenceOfSquares: UInt {
