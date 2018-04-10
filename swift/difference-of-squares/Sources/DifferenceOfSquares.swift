@@ -20,16 +20,18 @@ class Squares {
         inputRange = 0...num
     }
 
-    var squareOfSums: Int {
+    var squareOfSums: UInt {
         let sum = inputRange.sum()
-        return Int(sum * sum)
+        return sum * sum
     }
 
-    var sumOfSquares: Int {
-        return Int(inputRange.square().sum())
+    var sumOfSquares: UInt {
+        return inputRange
+            .square()
+            .sum()
     }
 
     var differenceOfSquares: Int {
-        return squareOfSums - sumOfSquares
+        return Int(squareOfSums) - Int(sumOfSquares)
     }
 }
