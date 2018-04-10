@@ -31,7 +31,7 @@ class Squares {
             .sum()
     }
 
-    var differenceOfSquares: Int {
-        return Int(squareOfSums) - Int(sumOfSquares)
+    var differenceOfSquares: UInt {
+        return squareOfSums - sumOfSquares
     }
 }
