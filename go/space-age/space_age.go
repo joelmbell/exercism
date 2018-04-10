@@ -20,7 +20,7 @@ func (p *Planet) getAgeInYears(seconds float64) float64 {
 	return seconds / orbitalPeriods[string(*p)]
 }
 
-// function Age returns the age you are in years
+// Age returns the age you are in years
 // based on the number of seconds you've lived command
 // the planet you live on.
 func Age(seconds float64, plant Planet) float64 {
