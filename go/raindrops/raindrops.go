@@ -3,25 +3,26 @@ package raindrops
 
 import "fmt"
 
+var dropMap = map[int]string{
+	3: "Pling",
+	5: "Plang",
+	7: "Plong",
+}
+
 // Convert is kinda useless, but I need to write these docs to keep the bots happy.
 func Convert(input int) string {
-	output := ""
 
-	if input%3 == 0 {
-		output = output + "Pling"
-	}
+	var output string
 
-	if input%5 == 0 {
-		output = output + "Plang"
-	}
-
-	if input%7 == 0 {
-		output = output + "Plong"
+	for i := 3; i <= 7; i += 2 {
+		if input%i == 0 {
+			output += dropMap[i]
+		}
 	}
 
 	if output == "" {
 		return fmt.Sprintf("%d", input)
-	} else {
-		return output
 	}
+
+	return output
 }
