@@ -6,29 +6,41 @@ import (
 )
 
 var scores = map[string]int{
-	"AEIOULNRST": 1,
-	"DG":         2,
-	"BCMP":       3,
-	"FHVWY":      4,
-	"K":          5,
-	"JX":         8,
-	"QZ":         10,
+	"A": 1,
+	"B": 3,
+	"C": 3,
+	"D": 2,
+	"E": 1,
+	"F": 4,
+	"G": 2,
+	"H": 4,
+	"I": 1,
+	"J": 8,
+	"K": 5,
+	"L": 1,
+	"M": 3,
+	"N": 1,
+	"O": 1,
+	"P": 3,
+	"Q": 10,
+	"R": 1,
+	"S": 1,
+	"T": 1,
+	"U": 1,
+	"V": 4,
+	"W": 4,
+	"X": 8,
+	"Y": 4,
+	"Z": 10,
 }
 
 // Score calculates the scrabble score of a word
 func Score(input string) int {
-
 	input = strings.ToUpper(input)
-	var score int
 
-OUTER:
+	var score int
 	for _, ele := range input {
-		for chars, points := range scores {
-			if strings.ContainsRune(chars, ele) {
-				score += points
-				continue OUTER
-			}
-		}
+		score += scores[string(ele)]
 	}
 	return score
 }
