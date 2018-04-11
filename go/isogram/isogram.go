@@ -1,19 +1,24 @@
 package isogram
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 func IsIsogram(input string) bool {
 
 	input = strings.ToUpper(input)
-	input = strings.Replace(input, "-", "", -1)
-	input = strings.Replace(input, " ", "", -1)
 
-	var passed string
+	passed := map[rune]int{}
 	for _, char := range input {
-		if strings.ContainsRune(passed, char) {
+		if !unicode.IsLetter(char) {
+			continue
+		}
+
+		if passed[char] == 1 {
 			return false
 		}
-		passed += string(char)
+		passed[char] = 1
 	}
 	return true
 }
