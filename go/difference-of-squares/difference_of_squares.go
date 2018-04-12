@@ -1,7 +1,7 @@
 // Package diffsquares diffs some squares
 package diffsquares
 
-// SumOfSquares sums all the values and squares them
+// SquareOfSums sums all the values and squares them
 func SquareOfSums(v int) (sum int) {
 	for i := 1; i <= v; i++ {
 		sum += i
