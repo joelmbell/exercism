@@ -20,21 +20,23 @@ extension Sequence where Element: Numeric {
 
 class Squares {
 
-    let inputRange: CountableClosedRange<UInt>
+    let inputRange: CountableClosedRange<Int>
 
-    init(_ num: UInt) {
+    init(_ num: Int) {
+        let num = num > 0 ? num : num
         inputRange = 0...num
     }
 
-    var squareOfSums: UInt {
-        return inputRange.sum().square()
-    }
+    lazy var squareOfSums: Int = {
+        return self.inputRange.sum().square()
+    }()
 
-    var sumOfSquares: UInt {
-        return inputRange.squareEach().sum()
-    }
+    lazy var sumOfSquares: Int = {
+        return self.inputRange.squareEach().sum()
+    }()
 
-    var differenceOfSquares: UInt {
+    var differenceOfSquares: Int {
         return squareOfSums - sumOfSquares
     }
 }
+
