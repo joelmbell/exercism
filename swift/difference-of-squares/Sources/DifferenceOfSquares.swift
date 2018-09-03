@@ -1,5 +1,3 @@
-//Solution goes in Sources
-
 import Foundation
 
 extension Numeric {
@@ -39,4 +37,3 @@ class Squares {
         return squareOfSums - sumOfSquares
     }
 }
-
