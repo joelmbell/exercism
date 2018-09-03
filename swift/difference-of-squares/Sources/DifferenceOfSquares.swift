@@ -21,7 +21,7 @@ class Squares {
     let inputRange: CountableClosedRange<Int>
 
     init(_ num: Int) {
-        let num = num > 0 ? num : num
+        let num = num > 0 ? num : 0
         inputRange = 0...num
     }
 
