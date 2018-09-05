@@ -1,8 +1,8 @@
 //Solution goes in Sources
 
 extension Sequence {
-    func zip<Y: Sequence, Z>(_ ys: Y, with closure: ((Self.Element, Y.Element) -> Z)) -> [Z] {
-        return Swift.zip(self, ys).map(closure)
+    func compare<Y: Sequence, Z>(to rhs: Y, with closure: ((Self.Element, Y.Element) -> Z)) -> [Z] {
+        return Swift.zip(self, rhs).map(closure)
     }
 }
 
@@ -27,7 +27,7 @@ struct Hamming {
 
     var distance: Int {
         return lhs
-            .zip(rhs) { $0 == $1 ? 0 : 1 }
+            .compare(to: rhs) { $0 == $1 ? 0 : 1 }
             .sum()
     }
 }
