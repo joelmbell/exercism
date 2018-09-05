@@ -7,25 +7,29 @@ struct Grains {
     enum GrainsError: Error {
         case inputTooLow(_ msg: String)
         case inputTooHigh(_ msg: String)
+        init?(_ value: Int) {
+            let msg = "Input[\(value)] invalid. Input should be between 1 and 64 (inclusive)"
+
+            if value > 64 {
+                self = .inputTooHigh(msg)
+            } else if value < 1 {
+                self = .inputTooLow(msg)
+            } else {
+                return nil
+            }
+        }
+    }
+
+    static func square(_ input: Int) throws -> Float {
+        if let error = GrainsError(input) {
+            throw error
+        }
+
+        return Float(1 << UInt(input-1))
     }
 
     static var total: Float {
         return total(upTo: 64)
-    }
-
-    static func square(_ input: Int) throws -> Float {
-
-        let errMsg = "Input[\(input)] invalid. Input should be between 1 and 64 (inclusive)"
-
-        guard input > 0 else {
-            throw GrainsError.inputTooLow(errMsg)
-        }
-
-        guard input < 65 else {
-            throw GrainsError.inputTooHigh(errMsg)
-        }
-
-        return powf(2, Float(input - 1))
     }
 
     static func total(upTo: Int) -> Float {
