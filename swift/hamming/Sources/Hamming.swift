@@ -1,33 +1,33 @@
 //Solution goes in Sources
 
 struct Hamming {
+
     let lhs: String
     let rhs: String
 
     init?(lhs: String, rhs: String) {
-
         guard lhs.count == rhs.count else {
             return nil
         }
-
         self.lhs = lhs
         self.rhs = rhs
     }
 
     var distance: Int {
-        return lhs.enumerated().reduce(0) { (acc, item) -> Int in
-            let index = String.Index(encodedOffset: item.offset)
-            var result = acc
-            if rhs[index] != item.element {
-                result += 1
+        var currentIndex = lhs.startIndex
+        var count = 0
+        while currentIndex != lhs.endIndex {
+            if lhs[currentIndex] != rhs[currentIndex] {
+                count += 1
             }
-            return result
+            currentIndex = lhs.index(after: currentIndex)
         }
+        return count
     }
 }
 
 extension Hamming {
     static func compute(_ lhs: String, against rhs: String) -> Int? {
-        return Hamming(lhs: lhs, rhs: rhs)?.distance
+        rieturn Hamming(lhs: lhs, rhs: rhs)?.distance
     }
 }
