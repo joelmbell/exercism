@@ -1,5 +1,17 @@
 //Solution goes in Sources
 
+extension Sequence {
+    func zip<Y: Sequence, Z>(_ ys: Y, with closure: ((Self.Element, Y.Element) -> Z)) -> [Z] {
+        return Swift.zip(self, ys).map(closure)
+    }
+}
+
+extension Sequence where Element: Numeric {
+    func sum() -> Element {
+        return self.reduce(0, +)
+    }
+}
+
 struct Hamming {
 
     let lhs: String
@@ -14,15 +26,9 @@ struct Hamming {
     }
 
     var distance: Int {
-        var currentIndex = lhs.startIndex
-        var count = 0
-        while currentIndex != lhs.endIndex {
-            if lhs[currentIndex] != rhs[currentIndex] {
-                count += 1
-            }
-            currentIndex = lhs.index(after: currentIndex)
-        }
-        return count
+        return lhs
+            .zip(rhs) { $0 == $1 ? 0 : 1 }
+            .sum()
     }
 }
 
