@@ -28,6 +28,6 @@ struct Hamming {
 
 extension Hamming {
     static func compute(_ lhs: String, against rhs: String) -> Int? {
-        rieturn Hamming(lhs: lhs, rhs: rhs)?.distance
+        return Hamming(lhs: lhs, rhs: rhs)?.distance
     }
 }
