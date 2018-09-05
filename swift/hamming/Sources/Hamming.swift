@@ -15,14 +15,14 @@ struct Hamming {
     }
 
     var distance: Int {
-        var count: Int = 0
-        for i in 0..<lhs.count {
-            let index = String.Index(encodedOffset: i)
-            if lhs[index] != rhs[index] {
-                count += 1
+        return lhs.enumerated().reduce(0) { (acc, item) -> Int in
+            let index = String.Index(encodedOffset: item.offset)
+            var result = acc
+            if rhs[index] != item.element {
+                result += 1
             }
+            return result
         }
-        return count
     }
 }
 
